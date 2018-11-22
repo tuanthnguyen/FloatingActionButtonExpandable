@@ -67,6 +67,7 @@ class FloatActionButtonExpandable @JvmOverloads constructor(
                 R.color.bg_float_action_default
             )
         )
+        val expanded = arr.getBoolean(R.styleable.FloatActionButtonExpandable_fab_expanded, true)
         arr.recycle()
 
         ivIcon = root.findViewById(R.id.icon)
@@ -80,31 +81,32 @@ class FloatActionButtonExpandable @JvmOverloads constructor(
         tvContent.setPadding(paddingTextIcon, 0, 0, 0)
         toggle = TransitionInflater.from(context)
             .inflateTransition(R.transition.float_action_button_toggle)
+        setExpanded(expanded)
 
         post {
             cardView.radius = height.toFloat()
         }
     }
 
-    fun expand() {
+    fun expand(anim: Boolean = true) {
         if (expanded) return
         expanded = true
-        execute()
+        execute(anim)
     }
 
-    fun collapse() {
+    fun collapse(anim: Boolean = true) {
         if (!expanded) return
         expanded = false
-        execute()
+        execute(anim)
     }
 
-    fun toggle() {
+    fun toggle(anim: Boolean = true) {
         expanded = !expanded
-        execute()
+        execute(anim)
     }
 
-    private fun execute() {
-        toggle.duration = duration
+    private fun execute(anim: Boolean = true) {
+        toggle.duration = if (anim) duration else 0
         TransitionManager.beginDelayedTransition(root.parent as ViewGroup, toggle)
         tvContent.visibility = if (expanded) View.VISIBLE else View.GONE
         ivIcon.isActivated = expanded
@@ -148,6 +150,12 @@ class FloatActionButtonExpandable @JvmOverloads constructor(
 
     fun setTextSize(unit: Int, size: Float) {
         tvContent.setTextSize(unit, size)
+    }
+
+    fun setExpanded(expanded: Boolean) {
+        this.expanded = expanded
+        tvContent.visibility = if (expanded) View.VISIBLE else View.GONE
+        ivIcon.isActivated = expanded
     }
 
     override fun onSaveInstanceState(): Parcelable {

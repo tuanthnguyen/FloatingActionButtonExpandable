@@ -8,5 +8,6 @@
         <attr name="fab_padding_text_icon" format="dimension"/>
         <attr name="fab_duration" format="integer"/>
         <attr name="fab_text_size" format="dimension"/>
+        <attr name="fab_expanded" format="boolean"/>
     </declare-styleable>
 </resources>

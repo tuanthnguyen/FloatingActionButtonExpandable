@@ -24,6 +24,7 @@
         app:fab_text_color_action_button="@android:color/white"
         app:fab_bg_color="@color/bg_float_action_default"
         app:fab_icon_action_button="@drawable/ic_message_white_24dp"
-        app:fab_duration="100"/>
+        app:fab_duration="100"
+        app:fab_expanded="true"/>
 
 </android.support.constraint.ConstraintLayout>

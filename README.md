@@ -28,6 +28,7 @@ fab.expand()
 // collapse
 fab.collapse()
 
+fab.setExpanded(true)
 fab.setDuration(100L)
 fab.setContent("Start Chat")
 // drawable, resId, bitmap
@@ -56,7 +57,8 @@ add `xmlns:app="http://schemas.android.com/apk/res-auto"`
     app:fab_text_color_action_button="@android:color/white"
     app:fab_bg_color="@color/bg_float_action_default"
     app:fab_icon_action_button="@drawable/ic_message_white_24dp"
-    app:fab_duration="100" />
+    app:fab_duration="100"
+    app:fab_expanded="true"/>
 ```
 
 ## Attributes
@@ -69,6 +71,7 @@ add `xmlns:app="http://schemas.android.com/apk/res-auto"`
 |fab_bg_color|The background color of the button|
 |fab_icon_action_button|The icon of the button|
 |fab_duration|The length of the expand or collapse animation|
+|fab_expanded|The button is expanded if you set true|
 
 ## Setup
 
@@ -76,9 +79,9 @@ Step 1. Add the JitPack repository in your root build.gradle at the end of repos
 ```
 allprojects {
     repositories {
-		...
-	    maven { url 'https://jitpack.io' }
-	}
+        ...
+        maven { url 'https://jitpack.io' }
+    }
 }
 ```
 
