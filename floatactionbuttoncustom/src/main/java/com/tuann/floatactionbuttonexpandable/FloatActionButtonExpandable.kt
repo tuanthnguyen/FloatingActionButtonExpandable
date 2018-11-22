@@ -43,26 +43,26 @@ class FloatActionButtonExpandable @JvmOverloads constructor(
             attrs,
             R.styleable.FloatActionButtonExpandable, 0, 0
         )
-        val content = arr.getString(R.styleable.FloatActionButtonExpandable_contentActionButton)
-        val icon = arr.getDrawable(R.styleable.FloatActionButtonExpandable_iconActionButton)
+        val content = arr.getString(R.styleable.FloatActionButtonExpandable_fab_content_action_button)
+        val icon = arr.getDrawable(R.styleable.FloatActionButtonExpandable_fab_icon_action_button)
         val textColor = arr.getColor(
-            R.styleable.FloatActionButtonExpandable_textColorActionButton,
+            R.styleable.FloatActionButtonExpandable_fab_text_color_action_button,
             ContextCompat.getColor(context, android.R.color.white)
         )
         val textSize = arr.getDimensionPixelSize(
-            R.styleable.FloatActionButtonExpandable_textSize,
+            R.styleable.FloatActionButtonExpandable_fab_text_size,
             resources.getDimensionPixelSize(R.dimen.text_size_action_button_default)
         )
         duration = arr.getInteger(
-            R.styleable.FloatActionButtonExpandable_duration,
+            R.styleable.FloatActionButtonExpandable_fab_duration,
             DURATION_DEFAULT
         ).toLong()
         val paddingTextIcon = arr.getDimensionPixelSize(
-            R.styleable.FloatActionButtonExpandable_paddingTextIcon,
+            R.styleable.FloatActionButtonExpandable_fab_padding_text_icon,
             resources.getDimensionPixelSize(R.dimen.padding_text_icon_default)
         )
         val bgColor = arr.getColor(
-            R.styleable.FloatActionButtonExpandable_bgColor, ContextCompat.getColor(
+            R.styleable.FloatActionButtonExpandable_fab_bg_color, ContextCompat.getColor(
                 context,
                 R.color.bg_float_action_default
             )

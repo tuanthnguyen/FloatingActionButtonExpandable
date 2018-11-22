@@ -19,11 +19,11 @@
         android:layout_margin="@dimen/padding_normal"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:contentActionButton="@string/label_start_chat"
-        app:paddingTextIcon="@dimen/padding_text_icon_default"
-        app:textColorActionButton="@android:color/white"
-        app:bgColor="@color/bg_float_action_default"
-        app:iconActionButton="@drawable/ic_message_white_24dp"
-        app:duration="100"/>
+        app:fab_content_action_button="@string/label_start_chat"
+        app:fab_padding_text_icon="@dimen/padding_text_icon_default"
+        app:fab_text_color_action_button="@android:color/white"
+        app:fab_bg_color="@color/bg_float_action_default"
+        app:fab_icon_action_button="@drawable/ic_message_white_24dp"
+        app:fab_duration="100"/>
 
 </android.support.constraint.ConstraintLayout>
