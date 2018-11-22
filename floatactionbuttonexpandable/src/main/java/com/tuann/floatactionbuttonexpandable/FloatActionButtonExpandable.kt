@@ -15,10 +15,11 @@ import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.ViewTreeObserver
 import android.widget.FrameLayout
 import android.widget.ImageView
 import android.widget.TextView
-import com.tuann.floatactionbuttoncustom.R
+import com.tuann.floatactionbuttonexpandable.R
 
 class FloatActionButtonExpandable @JvmOverloads constructor(
     context: Context,
@@ -83,9 +84,12 @@ class FloatActionButtonExpandable @JvmOverloads constructor(
             .inflateTransition(R.transition.float_action_button_toggle)
         setExpanded(expanded)
 
-        post {
-            cardView.radius = height.toFloat()
-        }
+        viewTreeObserver.addOnGlobalLayoutListener(object : ViewTreeObserver.OnGlobalLayoutListener {
+            override fun onGlobalLayout() {
+                viewTreeObserver.removeOnGlobalLayoutListener(this)
+                cardView.radius = height.toFloat()
+            }
+        })
     }
 
     fun expand(anim: Boolean = true) {
