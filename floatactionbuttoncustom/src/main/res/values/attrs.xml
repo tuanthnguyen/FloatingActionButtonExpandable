@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="FloatActionButtonExpandable">
+        <attr name="contentActionButton" format="string"/>
+        <attr name="iconActionButton" format="reference"/>
+        <attr name="textColorActionButton" format="color"/>
+        <attr name="bgColor" format="color"/>
+        <attr name="paddingTextIcon" format="dimension"/>
+        <attr name="duration" format="integer"/>
+        <attr name="textSize" format="dimension"/>
+    </declare-styleable>
+</resources>
