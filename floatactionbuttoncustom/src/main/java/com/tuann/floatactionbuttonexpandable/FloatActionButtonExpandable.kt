@@ -1,6 +1,8 @@
 package com.tuann.floatactionbuttonexpandable
 
 import android.content.Context
+import android.graphics.Bitmap
+import android.graphics.drawable.Drawable
 import android.os.Parcel
 import android.os.Parcelable
 import android.support.v4.content.ContextCompat
@@ -57,7 +59,7 @@ class FloatActionButtonExpandable @JvmOverloads constructor(
         ).toLong()
         val paddingTextIcon = arr.getDimensionPixelSize(
             R.styleable.FloatActionButtonExpandable_paddingTextIcon,
-            R.dimen.padding_text_icon_default
+            resources.getDimensionPixelSize(R.dimen.padding_text_icon_default)
         )
         val bgColor = arr.getColor(
             R.styleable.FloatActionButtonExpandable_bgColor, ContextCompat.getColor(
@@ -78,36 +80,78 @@ class FloatActionButtonExpandable @JvmOverloads constructor(
         tvContent.setPadding(paddingTextIcon, 0, 0, 0)
         toggle = TransitionInflater.from(context)
             .inflateTransition(R.transition.float_action_button_toggle)
-        root.setOnClickListener {
-            toggleExpanded()
-        }
 
         post {
             cardView.radius = height.toFloat()
         }
     }
 
-    private fun toggleExpanded() {
+    fun expand() {
+        if (expanded) return
+        expanded = true
+        execute()
+    }
+
+    fun collapse() {
+        if (!expanded) return
+        expanded = false
+        execute()
+    }
+
+    fun toggle() {
         expanded = !expanded
+        execute()
+    }
+
+    private fun execute() {
         toggle.duration = duration
         TransitionManager.beginDelayedTransition(root.parent as ViewGroup, toggle)
         tvContent.visibility = if (expanded) View.VISIBLE else View.GONE
         ivIcon.isActivated = expanded
     }
 
-    fun expand() {
-        if (expanded) return
-        toggleExpanded()
+    fun setDuration(duration: Long) {
+        this.duration = duration
     }
 
-    fun collapse() {
-        if (!expanded) return
-        toggleExpanded()
+    fun setContent(content: String) {
+        tvContent.text = content
+    }
+
+    fun setIconActionButton(drawable: Drawable) {
+        ivIcon.setImageDrawable(drawable)
+    }
+
+    fun setIconActionButton(resId: Int) {
+        ivIcon.setImageResource(resId)
+    }
+
+    fun setIconActionButton(bitmap: Bitmap) {
+        ivIcon.setImageBitmap(bitmap)
+    }
+
+    fun setTextColor(color: Int) {
+        tvContent.setTextColor(color)
+    }
+
+    fun setBackgroundButtonColor(color: Int) {
+        cardView.setCardBackgroundColor(color)
+    }
+
+    fun setPaddingTextIcon(padding: Int) {
+        tvContent.setPadding(padding, 0, 0, 0)
+    }
+
+    fun setTextSize(size: Float) {
+        tvContent.setTextSize(TypedValue.COMPLEX_UNIT_SP, size)
+    }
+
+    fun setTextSize(unit: Int, size: Float) {
+        tvContent.setTextSize(unit, size)
     }
 
     override fun onSaveInstanceState(): Parcelable {
-        val savedState =
-            SavedState(super.onSaveInstanceState())
+        val savedState = SavedState(super.onSaveInstanceState())
         savedState.expanded = expanded
         return savedState
     }
@@ -116,7 +160,7 @@ class FloatActionButtonExpandable @JvmOverloads constructor(
         if (state is SavedState) {
             super.onRestoreInstanceState(state.superState)
             if (expanded != state.expanded) {
-                toggleExpanded()
+                toggle()
             }
         } else {
             super.onRestoreInstanceState(state)

@@ -15,9 +15,9 @@
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:padding="@dimen/padding_float_action_button_default"
-        android:layout_height="wrap_content">
+        android:padding="@dimen/padding_float_action_button_default">
 
         <ImageView
             android:id="@+id/icon"
