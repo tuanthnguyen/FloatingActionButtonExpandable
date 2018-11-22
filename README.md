@@ -1,5 +1,7 @@
 # Float Action Button Expandable
 
+[![](https://jitpack.io/v/imtuann/FloatActionButtonExpandable.svg)](https://jitpack.io/#imtuann/FloatActionButtonExpandable)
+
 An android library that brings the float action button expandable. You can include optional contents and use everywhere.
 
 ## Preview
