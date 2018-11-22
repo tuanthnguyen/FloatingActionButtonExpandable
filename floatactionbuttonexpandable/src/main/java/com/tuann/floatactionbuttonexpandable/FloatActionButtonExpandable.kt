@@ -19,7 +19,6 @@ import android.view.ViewTreeObserver
 import android.widget.FrameLayout
 import android.widget.ImageView
 import android.widget.TextView
-import com.tuann.floatactionbuttonexpandable.R
 
 class FloatActionButtonExpandable @JvmOverloads constructor(
     context: Context,
