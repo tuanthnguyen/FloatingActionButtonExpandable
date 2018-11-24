@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="padding_normal">16dp</dimen>
+    <dimen name="padding_fab">16dp</dimen>
+    <dimen name="padding_text_icon">8dp</dimen>
+    <dimen name="text_size_fab">16sp</dimen>
 </resources>

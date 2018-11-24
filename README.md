@@ -1,12 +1,10 @@
 # Float Action Button Expandable
 
-[![](https://jitpack.io/v/imtuann/FloatActionButtonExpandable.svg)](https://jitpack.io/#imtuann/FloatActionButtonExpandable)
-
 An android library that brings the float action button expandable. You can include optional contents and use everywhere.
 
 ## Preview
 
-![FloatActionButtonExpandable][FloatActionButtonExpandable]
+![FloatingActionButtonExpandable][FloatingActionButtonExpandable]
 
 ## Usage
 
@@ -21,7 +19,7 @@ recyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
         } else {
             fab.expand()
         }
-   }
+    }
 })
 // toggle expand, collapse
 fab.toggle()
@@ -36,11 +34,13 @@ fab.setContent("Start Chat")
 // drawable, resId, bitmap
 fab.setIconActionButton(R.drawable.ic_message_white_24dp)
 fab.setTextColor(ContextCompat.getColor(this, android.R.color.white))
-fab.setBackgroundButtonColor(ContextCompat.getColor(this, R.color.bg_float_action_default))
+fab.setBackgroundButtonColor(ContextCompat.getColor(this, R.color.bg_float_action))
 // padding between the icon and text
-fab.setPaddingTextIcon(resources.getDimensionPixelSize(R.dimen.padding_text_icon_default))
+fab.setPaddingTextIcon(resources.getDimensionPixelSize(R.dimen.padding_text_icon))
+// padding inside the button
+fab.setPaddingInsideButton(resources.getDimensionPixelSize(R.dimen.padding_fab))
 // pixel
-fab.setTextSize(resources.getDimensionPixelSize(R.dimen.text_size_action_button_default).toFloat())
+fab.setTextSize(resources.getDimensionPixelSize(R.dimen.text_size_fab).toFloat())
 // or
 fab.setTextSize(TypedValue.COMPLEX_UNIT_SP, 14)
 ```
@@ -50,16 +50,18 @@ fab.setTextSize(TypedValue.COMPLEX_UNIT_SP, 14)
 add `xmlns:app="http://schemas.android.com/apk/res-auto"`
 
 ```xml
-<com.tuann.floatactionbuttonexpandable.FloatActionButtonExpandable
+<com.tuann.floatingactionbuttonexpandable.FloatingActionButtonExpandable
     android:id="@+id/fab"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    app:fab_content_action_button="@string/label_start_chat"
-    app:fab_padding_text_icon="@dimen/padding_text_icon_default"
-    app:fab_text_color_action_button="@android:color/white"
-    app:fab_bg_color="@color/bg_float_action_default"
-    app:fab_icon_action_button="@drawable/ic_message_white_24dp"
+    app:fab_content="@string/label_start_chat"
+    app:fab_padding_text_icon="@dimen/padding_text_icon"
+    app:fab_text_color="@android:color/white"
+    app:fab_bg_color="@color/bg_float_action"
+    app:fab_icon="@drawable/ic_message_white_24dp"
     app:fab_duration="100"
+    app:fab_text_size="@dimen/text_size_action_button"
+    app:fab_padding="@dimen/padding_fab"
     app:fab_expanded="true"/>
 ```
 
@@ -67,12 +69,14 @@ add `xmlns:app="http://schemas.android.com/apk/res-auto"`
 
 |attribute name|description|
 |:-:|:-:|
-|fab_content_action_button|The content of the button|
+|fab_content|The content of the button|
 |fab_padding_text_icon|The padding between the text and icon|
-|fab_text_color_action_button|The color of the text|
+|fab_text_color|The color of the text|
 |fab_bg_color|The background color of the button|
-|fab_icon_action_button|The icon of the button|
+|fab_icon|The icon of the button|
 |fab_duration|The length of the expand or collapse animation|
+|fab_text_size|The text size of the button|
+|fab_padding|The padding inside the button|
 |fab_expanded|The button is expanded if you set true|
 
 ## Setup
@@ -89,7 +93,7 @@ allprojects {
 
 Step 2. Add the dependency
 ```
-implementation 'com.github.imtuann:FloatActionButtonExpandable:1.0.2'
+implementation 'com.github.imtuann:FloatActionButtonExpandable:1.0.3'
 ```
 
 ## License
@@ -110,4 +114,4 @@ See the License for the specific language governing permissions and
 limitations under the License.
 ```
 
-[FloatActionButtonExpandable]: /art/FloatActionButtonExpandable.gif
+[FloatActionButtonExpandable]: /art/FloatingActionButtonExpandable.gif

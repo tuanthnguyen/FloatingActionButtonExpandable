@@ -1,1 +1,1 @@
-include ':app', ':floatactionbuttonexpandable'
+include ':app', ':floatingactionbuttonexpandable'

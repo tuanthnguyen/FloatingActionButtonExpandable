@@ -1,4 +1,4 @@
-package com.tuann.floatactionbuttonexpandable
+package com.tuann.floatingactionbuttonexpandable
 
 import android.content.Context
 import android.graphics.Bitmap
@@ -18,9 +18,10 @@ import android.view.ViewGroup
 import android.view.ViewTreeObserver
 import android.widget.FrameLayout
 import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.TextView
 
-class FloatActionButtonExpandable @JvmOverloads constructor(
+class FloatingActionButtonExpandable @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0
@@ -30,9 +31,10 @@ class FloatActionButtonExpandable @JvmOverloads constructor(
     }
 
     private var expanded = false
-    private val cardView: CardView
     private val root: View = LayoutInflater.from(context)
-        .inflate(R.layout.view_float_action_button, this, true)
+        .inflate(R.layout.view_floating_action_button, this, true)
+    private val cardView: CardView
+    private val buttonLayout: LinearLayout
     private val ivIcon: ImageView
     private val tvContent: TextView
     private val toggle: Transition
@@ -41,44 +43,58 @@ class FloatActionButtonExpandable @JvmOverloads constructor(
     init {
         val arr = context.obtainStyledAttributes(
             attrs,
-            R.styleable.FloatActionButtonExpandable, 0, 0
+            R.styleable.FloatingActionButtonExpandable, 0, 0
         )
-        val content = arr.getString(R.styleable.FloatActionButtonExpandable_fab_content_action_button)
-        val icon = arr.getDrawable(R.styleable.FloatActionButtonExpandable_fab_icon_action_button)
+        val content = arr.getString(R.styleable.FloatingActionButtonExpandable_fab_content)
+        val icon = arr.getDrawable(R.styleable.FloatingActionButtonExpandable_fab_icon)
         val textColor = arr.getColor(
-            R.styleable.FloatActionButtonExpandable_fab_text_color_action_button,
+            R.styleable.FloatingActionButtonExpandable_fab_text_color,
             ContextCompat.getColor(context, android.R.color.white)
         )
         val textSize = arr.getDimensionPixelSize(
-            R.styleable.FloatActionButtonExpandable_fab_text_size,
+            R.styleable.FloatingActionButtonExpandable_fab_text_size,
             resources.getDimensionPixelSize(R.dimen.text_size_action_button_default)
         )
         duration = arr.getInteger(
-            R.styleable.FloatActionButtonExpandable_fab_duration,
+            R.styleable.FloatingActionButtonExpandable_fab_duration,
             DURATION_DEFAULT
         ).toLong()
-        val paddingTextIcon = arr.getDimensionPixelSize(
-            R.styleable.FloatActionButtonExpandable_fab_padding_text_icon,
+        var paddingTextIcon = arr.getDimensionPixelSize(
+            R.styleable.FloatingActionButtonExpandable_fab_padding_text_icon,
             resources.getDimensionPixelSize(R.dimen.padding_text_icon_default)
         )
+        if (content.isNullOrEmpty() || icon == null) {
+            paddingTextIcon = 0
+        }
         val bgColor = arr.getColor(
-            R.styleable.FloatActionButtonExpandable_fab_bg_color, ContextCompat.getColor(
+            R.styleable.FloatingActionButtonExpandable_fab_bg_color, ContextCompat.getColor(
                 context,
                 R.color.bg_float_action_default
             )
         )
-        val expanded = arr.getBoolean(R.styleable.FloatActionButtonExpandable_fab_expanded, true)
+        val fabPadding = arr.getDimensionPixelSize(
+            R.styleable.FloatingActionButtonExpandable_fab_padding,
+            resources.getDimensionPixelSize(R.dimen.padding_fab_default)
+        )
+        val expanded = arr.getBoolean(R.styleable.FloatingActionButtonExpandable_fab_expanded, true)
         arr.recycle()
 
         ivIcon = root.findViewById(R.id.icon)
         tvContent = root.findViewById(R.id.content)
         cardView = root.findViewById(R.id.cardView)
+        buttonLayout = root.findViewById(R.id.buttonLayout)
+
         cardView.setCardBackgroundColor(bgColor)
+
+        buttonLayout.setPadding(fabPadding, fabPadding, fabPadding, fabPadding)
+
         ivIcon.setImageDrawable(icon)
+
         tvContent.setTextSize(TypedValue.COMPLEX_UNIT_PX, textSize.toFloat())
         tvContent.text = content
         tvContent.setTextColor(textColor)
         tvContent.setPadding(paddingTextIcon, 0, 0, 0)
+
         toggle = TransitionInflater.from(context)
             .inflateTransition(R.transition.float_action_button_toggle)
         setExpanded(expanded)
@@ -153,6 +169,10 @@ class FloatActionButtonExpandable @JvmOverloads constructor(
 
     fun setTextSize(unit: Int, size: Float) {
         tvContent.setTextSize(unit, size)
+    }
+
+    fun setPaddingInsideButton(padding: Int) {
+        buttonLayout.setPadding(padding, padding, padding, padding)
     }
 
     fun setExpanded(expanded: Boolean) {

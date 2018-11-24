@@ -1,3 +1,4 @@
 <resources>
-    <string name="app_name">FloatActionButtonExpandable</string>
+    <string name="app_name">FloatingActionButtonExpandable</string>
+    <string name="label_start_chat">Start Chat</string>
 </resources>

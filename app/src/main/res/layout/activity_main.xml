@@ -5,26 +5,28 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.tuann.demo.MainActivity">
+    tools:context="com.tuann.sample.floatingactionbuttonexpandable.MainActivity">
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recycleView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 
-    <com.tuann.floatactionbuttonexpandable.FloatActionButtonExpandable
+    <com.tuann.floatingactionbuttonexpandable.FloatingActionButtonExpandable
         android:id="@+id/fab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/padding_normal"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:fab_content_action_button="@string/label_start_chat"
-        app:fab_padding_text_icon="@dimen/padding_text_icon_default"
-        app:fab_text_color_action_button="@android:color/white"
-        app:fab_bg_color="@color/bg_float_action_default"
-        app:fab_icon_action_button="@drawable/ic_message_white_24dp"
+        app:fab_content="@string/label_start_chat"
+        app:fab_padding_text_icon="@dimen/padding_text_icon"
+        app:fab_text_color="@android:color/white"
+        app:fab_bg_color="@color/bg_float_action"
+        app:fab_icon="@drawable/ic_message_white_24dp"
         app:fab_duration="100"
+        app:fab_text_size="@dimen/text_size_fab"
+        app:fab_padding="@dimen/padding_fab"
         app:fab_expanded="true"/>
 
 </android.support.constraint.ConstraintLayout>

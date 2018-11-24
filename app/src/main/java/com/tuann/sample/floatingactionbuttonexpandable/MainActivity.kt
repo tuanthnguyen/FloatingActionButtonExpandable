@@ -1,7 +1,7 @@
-package com.tuann.demo
+package com.tuann.sample.floatingactionbuttonexpandable
 
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
@@ -9,8 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
-import com.tuann.floatactionbuttonexpandable.FloatActionButtonExpandable
-import com.tuann.floatactionbuttoncustom.R
+import com.tuann.floatingactionbuttonexpandable.FloatingActionButtonExpandable
 
 class MainActivity : AppCompatActivity() {
 
@@ -18,14 +17,14 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val fab = findViewById<FloatActionButtonExpandable>(R.id.fab)
+        val fab = findViewById<FloatingActionButtonExpandable>(R.id.fab)
         val recyclerView = findViewById<RecyclerView>(R.id.recycleView)
         recyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
         val adapter = TestAdapter()
         recyclerView.adapter = adapter
 
         val items = ArrayList<String>()
-        for (i in 0..100) {
+        for (i in 0..99) {
             items.add("Value " + (i + 1))
         }
         adapter.setData(items)

@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <declare-styleable name="FloatActionButtonExpandable">
-        <attr name="fab_content_action_button" format="string"/>
-        <attr name="fab_icon_action_button" format="reference"/>
-        <attr name="fab_text_color_action_button" format="color"/>
+    <declare-styleable name="FloatingActionButtonExpandable">
+        <attr name="fab_content" format="string"/>
+        <attr name="fab_icon" format="reference"/>
+        <attr name="fab_text_color" format="color"/>
         <attr name="fab_bg_color" format="color"/>
         <attr name="fab_padding_text_icon" format="dimension"/>
         <attr name="fab_duration" format="integer"/>
         <attr name="fab_text_size" format="dimension"/>
         <attr name="fab_expanded" format="boolean"/>
+        <attr name="fab_padding" format="dimension"/>
     </declare-styleable>
 </resources>
