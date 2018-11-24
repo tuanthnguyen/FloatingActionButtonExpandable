@@ -116,4 +116,4 @@ See the License for the specific language governing permissions and
 limitations under the License.
 ```
 
-[FloatActionButtonExpandable]: /art/FloatingActionButtonExpandable.gif
+[FloatingActionButtonExpandable]: /art/FloatingActionButtonExpandable.gif
