@@ -1,4 +1,4 @@
-# Float Action Button Expandable
+# Floating Action Button Expandable
 
 [![](https://jitpack.io/v/imtuann/FloatingActionButtonExpandable.svg)](https://jitpack.io/#imtuann/FloatingActionButtonExpandable)
 
