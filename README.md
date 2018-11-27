@@ -95,7 +95,7 @@ allprojects {
 
 Step 2. Add the dependency
 ```
-implementation 'com.github.imtuann:FloatingActionButtonExpandable:1.0.3'
+implementation 'com.github.imtuann:FloatingActionButtonExpandable:1.1.0'
 ```
 
 ## License
