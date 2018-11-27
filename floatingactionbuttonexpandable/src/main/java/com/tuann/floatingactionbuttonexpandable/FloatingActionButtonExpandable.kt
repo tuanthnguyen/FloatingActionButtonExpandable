@@ -102,7 +102,7 @@ class FloatingActionButtonExpandable @JvmOverloads constructor(
         viewTreeObserver.addOnGlobalLayoutListener(object : ViewTreeObserver.OnGlobalLayoutListener {
             override fun onGlobalLayout() {
                 viewTreeObserver.removeOnGlobalLayoutListener(this)
-                cardView.radius = height.toFloat()
+                cardView.radius = (height / 2).toFloat() - 2 * resources.getDimensionPixelSize(R.dimen.card_elevation)
             }
         })
     }
