@@ -2,6 +2,7 @@ package com.tuann.floatingactionbuttonexpandable
 
 import android.content.Context
 import android.graphics.Bitmap
+import android.graphics.Typeface
 import android.graphics.drawable.Drawable
 import android.os.Parcel
 import android.os.Parcelable
@@ -99,12 +100,74 @@ class FloatingActionButtonExpandable @JvmOverloads constructor(
             .inflateTransition(R.transition.float_action_button_toggle)
         setExpanded(expanded)
 
-        viewTreeObserver.addOnGlobalLayoutListener(object : ViewTreeObserver.OnGlobalLayoutListener {
-            override fun onGlobalLayout() {
-                viewTreeObserver.removeOnGlobalLayoutListener(this)
-                cardView.radius = (height / 2).toFloat() - 2 * resources.getDimensionPixelSize(R.dimen.card_elevation)
-            }
-        })
+        calculateRadius()
+    }
+
+    fun setDuration(duration: Long) {
+        this.duration = duration
+    }
+
+    fun setContent(content: String) {
+        tvContent.text = content
+        calculateRadius()
+    }
+
+    fun setIconActionButton(drawable: Drawable) {
+        ivIcon.setImageDrawable(drawable)
+        calculateRadius()
+    }
+
+    fun setIconActionButton(resId: Int) {
+        ivIcon.setImageResource(resId)
+        calculateRadius()
+    }
+
+    fun setIconActionButton(bitmap: Bitmap) {
+        ivIcon.setImageBitmap(bitmap)
+        calculateRadius()
+    }
+
+    fun setTextColor(color: Int) {
+        tvContent.setTextColor(color)
+    }
+
+    fun setBackgroundButtonColor(color: Int) {
+        cardView.setCardBackgroundColor(color)
+    }
+
+    fun setPaddingTextIcon(padding: Int) {
+        tvContent.setPadding(padding, 0, 0, 0)
+    }
+
+    fun setTextSize(size: Float) {
+        tvContent.setTextSize(TypedValue.COMPLEX_UNIT_SP, size)
+        calculateRadius()
+    }
+
+    fun setTextSize(unit: Int, size: Float) {
+        tvContent.setTextSize(unit, size)
+        calculateRadius()
+    }
+
+    fun setPaddingInsideButton(padding: Int) {
+        buttonLayout.setPadding(padding, padding, padding, padding)
+        calculateRadius()
+    }
+
+    fun setTypeface(style: Int) {
+        tvContent.setTypeface(tvContent.typeface, style)
+        calculateRadius()
+    }
+
+    fun setTypeface(typeface: Typeface) {
+        tvContent.typeface = typeface
+        calculateRadius()
+    }
+
+    fun setExpanded(expanded: Boolean) {
+        this.expanded = expanded
+        tvContent.visibility = if (expanded) View.VISIBLE else View.GONE
+        ivIcon.isActivated = expanded
     }
 
     fun expand(anim: Boolean = true) {
@@ -129,56 +192,19 @@ class FloatingActionButtonExpandable @JvmOverloads constructor(
         TransitionManager.beginDelayedTransition(root.parent as ViewGroup, toggle)
         tvContent.visibility = if (expanded) View.VISIBLE else View.GONE
         ivIcon.isActivated = expanded
+        calculateRadius()
     }
 
-    fun setDuration(duration: Long) {
-        this.duration = duration
-    }
-
-    fun setContent(content: String) {
-        tvContent.text = content
-    }
-
-    fun setIconActionButton(drawable: Drawable) {
-        ivIcon.setImageDrawable(drawable)
-    }
-
-    fun setIconActionButton(resId: Int) {
-        ivIcon.setImageResource(resId)
-    }
-
-    fun setIconActionButton(bitmap: Bitmap) {
-        ivIcon.setImageBitmap(bitmap)
-    }
-
-    fun setTextColor(color: Int) {
-        tvContent.setTextColor(color)
-    }
-
-    fun setBackgroundButtonColor(color: Int) {
-        cardView.setCardBackgroundColor(color)
-    }
-
-    fun setPaddingTextIcon(padding: Int) {
-        tvContent.setPadding(padding, 0, 0, 0)
-    }
-
-    fun setTextSize(size: Float) {
-        tvContent.setTextSize(TypedValue.COMPLEX_UNIT_SP, size)
-    }
-
-    fun setTextSize(unit: Int, size: Float) {
-        tvContent.setTextSize(unit, size)
-    }
-
-    fun setPaddingInsideButton(padding: Int) {
-        buttonLayout.setPadding(padding, padding, padding, padding)
-    }
-
-    fun setExpanded(expanded: Boolean) {
-        this.expanded = expanded
-        tvContent.visibility = if (expanded) View.VISIBLE else View.GONE
-        ivIcon.isActivated = expanded
+    /**
+     * Calculates the radius of the button
+     */
+    private fun calculateRadius() {
+        cardView.viewTreeObserver.addOnGlobalLayoutListener(object : ViewTreeObserver.OnGlobalLayoutListener {
+            override fun onGlobalLayout() {
+                cardView.viewTreeObserver.removeOnGlobalLayoutListener(this)
+                cardView.radius = ((height / 2) - 2 * resources.getDimensionPixelSize(R.dimen.card_elevation)).toFloat()
+            }
+        })
     }
 
     override fun onSaveInstanceState(): Parcelable {

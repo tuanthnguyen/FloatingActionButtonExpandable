@@ -44,7 +44,12 @@ fab.setPaddingInsideButton(resources.getDimensionPixelSize(R.dimen.padding_fab))
 // pixel
 fab.setTextSize(resources.getDimensionPixelSize(R.dimen.text_size_fab).toFloat())
 // or
-fab.setTextSize(TypedValue.COMPLEX_UNIT_SP, 14)
+fab.setTextSize(TypedValue.COMPLEX_UNIT_SP, 14f)
+// text style
+fab.setTypeface(Typeface.BOLD)
+// font
+val typeface = Typeface.createFromAsset(assets, "fonts/roboto.ttf")
+fab.setTypeface(typeface)
 ```
 
 ### Layout xml
@@ -70,7 +75,7 @@ add `xmlns:app="http://schemas.android.com/apk/res-auto"`
 ## Attributes
 
 |attribute name|description|
-|:-:|:-:|
+|----------|----------|
 |fab_content|The content of the button|
 |fab_padding_text_icon|The padding between the text and icon|
 |fab_text_color|The color of the text|
@@ -95,7 +100,7 @@ allprojects {
 
 Step 2. Add the dependency
 ```
-implementation 'com.github.imtuann:FloatingActionButtonExpandable:1.1.0'
+implementation 'com.github.imtuann:FloatingActionButtonExpandable:1.1.1'
 ```
 
 ## License
