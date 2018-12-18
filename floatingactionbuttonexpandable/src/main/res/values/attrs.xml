@@ -10,5 +10,6 @@
         <attr name="fab_text_size" format="dimension"/>
         <attr name="fab_expanded" format="boolean"/>
         <attr name="fab_padding" format="dimension"/>
+        <attr name="fab_typeface" format="string"/>
     </declare-styleable>
 </resources>
