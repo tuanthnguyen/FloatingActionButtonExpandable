@@ -12,6 +12,7 @@ import android.transition.Transition
 import android.transition.TransitionInflater
 import android.transition.TransitionManager
 import android.util.AttributeSet
+import android.util.Log
 import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
@@ -29,6 +30,7 @@ class FloatingActionButtonExpandable @JvmOverloads constructor(
 ) : FrameLayout(context, attrs, defStyleAttr) {
     companion object {
         private const val DURATION_DEFAULT = 100
+        private val TAG = FloatingActionButtonExpandable::class.java.name
     }
 
     private var expanded = false
@@ -78,6 +80,20 @@ class FloatingActionButtonExpandable @JvmOverloads constructor(
             resources.getDimensionPixelSize(R.dimen.padding_fab_default)
         )
         val expanded = arr.getBoolean(R.styleable.FloatingActionButtonExpandable_fab_expanded, true)
+        val typefacePath = arr.getString(R.styleable.FloatingActionButtonExpandable_fab_typeface)
+        var typeface: Typeface? = null
+        typefacePath?.let {
+            if (it.isNotEmpty()) {
+                try {
+                    typeface = Typeface.createFromAsset(
+                        context.assets,
+                        typefacePath
+                    )
+                } catch (e: RuntimeException) {
+                    Log.e(TAG, e.toString())
+                }
+            }
+        }
         arr.recycle()
 
         ivIcon = root.findViewById(R.id.icon)
@@ -95,6 +111,9 @@ class FloatingActionButtonExpandable @JvmOverloads constructor(
         tvContent.text = content
         tvContent.setTextColor(textColor)
         tvContent.setPadding(paddingTextIcon, 0, 0, 0)
+        typeface?.let {
+            tvContent.typeface = it
+        }
 
         toggle = TransitionInflater.from(context)
             .inflateTransition(R.transition.float_action_button_toggle)

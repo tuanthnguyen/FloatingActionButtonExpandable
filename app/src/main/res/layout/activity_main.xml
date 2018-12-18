@@ -26,6 +26,7 @@
         app:fab_icon="@drawable/ic_message_white_24dp"
         app:fab_duration="100"
         app:fab_text_size="@dimen/text_size_fab"
+        app:fab_typeface="fonts/RobotoSlab-Regular.ttf"
         app:fab_padding="@dimen/padding_fab"
         app:fab_expanded="true"/>
 
