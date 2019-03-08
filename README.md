@@ -4,6 +4,8 @@
 
 An android library that brings the float action button expandable. You can include optional contents and use everywhere.
 
+Note: The Extended FAB is one of #MaterialDesign’s 🔥🔥🔥 components. You can get the code for implementing it on [Android](https://twitter.com/Android) in the 1.1.0-alpha04 release, out now! http://bit.ly/ex_fab
+
 ## Preview
 
 ![FloatingActionButtonExpandable][FloatingActionButtonExpandable]
